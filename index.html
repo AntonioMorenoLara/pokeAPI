@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>PokeDex</title>
     <script src="logica.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
 </head>
-<body>
-    
-</body>
+<body class="grid_body">
+    <header>
+        <h1>PokéDex</h1>
+    </header>
+    <main class="grid_main">
+        <div></div>
+        <article class="color_blue height_screen  grid_screen">
+            <div class="vertical_align_center">
+                <img src="images/arrow-left.svg" class="arrows_size" onclick="handleClick">
+            </div>
+            <div></div>
+
+            <div class="vertical_align_center right_arrow">
+                <img src="images/arrow-right.svg" class="arrows_size" onclick="handleRight">
+            </div>
+            <button id="botonPokedex"></button>
+        </article>
+        
+    </main>
 </html>

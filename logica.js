@@ -7,8 +7,6 @@ class Pokedex {
 
 
 window.onload = function() {
-    document.getElementById('cargar').addEventListener('click',cargar);
-    console.log('HOLA');
 
     fetch('https://pokeapi.co/api/v2/pokemon/chimchar')
     .then(respuesta => respuesta.json())

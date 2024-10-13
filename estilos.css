@@ -1,7 +1,62 @@
 body {
     background-color: black;
-    background-image: url('images/background1.jpg');
+    background-image: url('images/background3.webp');
     background-repeat: no-repeat;
-    background-size: 82%;
+    background-size: 82vw ;
     background-position: 50% 1%;
 }
+
+.grid_body {
+    display: grid;
+
+}
+
+/*Letra más curro*/
+h1 {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-style: normal;
+    color: gold;
+    text-align:center;
+    font-size: 3rem;
+}
+
+.color_blue {
+    background-color: #b3effe;
+}
+
+
+.height_screen {
+    height: 500px;
+}
+
+.grid_main {
+    display: grid;
+    grid-template-columns: 12% 49% 15.5%;
+    align-content: center;
+    align-items: end;
+    
+}
+
+.grid_screen {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+}
+
+.vertical_align_center {
+    align-items: end;
+    align-self: center;
+}
+
+.arrows_size {
+
+    width: 50px;
+    cursor: pointer;
+}
+
+.right_arrow {
+    justify-self: end;
+    align-items: center;
+}
+
+
