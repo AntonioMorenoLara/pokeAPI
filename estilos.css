@@ -3,7 +3,7 @@ body {
     background-image: url('images/background3.webp');
     background-repeat: no-repeat;
     background-size: 82vw ;
-    background-position: 50% 1%;
+    background-position: 50%;
 }
 
 .grid_body {
@@ -40,12 +40,31 @@ h1 {
 
 .grid_screen {
     display: grid;
+}
+
+.grid_infoPok {
+    display: grid;
     grid-template-columns: 10% 80% 10%;
 }
 
 .vertical_align_center {
     align-items: end;
     align-self: center;
+}
+
+.font_pixel {
+
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.title {
+    font-size: 3em;
+    text-align: center;
+}
+
+.grid_content {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
 }
 
 .arrows_size {
@@ -59,4 +78,10 @@ h1 {
     align-items: center;
 }
 
-
+.pokdex_button {
+    border-radius: 100%;
+    align-self: center;
+    margin-top: 70%;
+    width: 60%;
+    height: 30%;
+}

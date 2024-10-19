@@ -1,11 +1,3 @@
-
-
-
-
-class Pokedex {
-}
-
-
 window.onload = function() {
 
     fetch('https://pokeapi.co/api/v2/pokemon/chimchar')
