@@ -85,3 +85,46 @@ h1 {
     width: 60%;
     height: 30%;
 }
+
+
+/*types styles */
+
+.fire {
+    color:yellow;
+    background-color:red;
+}
+
+.water {
+    color: white;
+    background-color: #00B0F0;
+}
+
+.electric {
+    color: black;
+    background-color: yellow;
+}
+
+.flying {
+    background-color: #9966FF;
+    color:white;
+}
+
+.fighting {
+    background-color: brown;
+    color:white;
+}
+
+.ground {
+    background-color: #CC3300;
+    color:white;
+}
+
+.grass {
+    background-color: green;
+    color:white;
+}
+
+.grass {
+    background-color: #6600CC;
+    color:white;
+}
