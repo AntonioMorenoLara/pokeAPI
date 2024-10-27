@@ -11,9 +11,12 @@ window.onload = function() {
         let peso = result.weight;
         let altura = result.height;
         
-        document.getElementById('tipos').innerHTML = type;
-        document.getElementById('peso').innerHTML += peso;
-        document.getElementById('altura').innerHTML += altura;
+        //document.getElementById('tipos').innerHTML = type;
+
+
+        formatoTipos(type);
+        document.getElementById('peso').innerHTML = parseFloat(peso) / 10 ;
+        document.getElementById('altura').innerHTML = parseFloat(altura) / 10;
         /*let imgEspaldas;
         let imgFrontal = */
 
@@ -112,6 +115,97 @@ window.onload = function() {
         //console.log(result);
     })
     
+}
+
+function formatoTipos(tipos) {
+
+    let tiposSeparados = tipos.split(',');
+    let typesFormatted;
+
+    for (let tipo of tiposSeparados) {
+
+        switch (tipo) {
+
+            case "fire":
+                let spanFuego = document.createElement('span');
+                let textoFuego = document.createTextNode(tipo);
+                spanFuego.setAttribute('class','fire');
+                spanFuego.appendChild(textoFuego);
+                typesFormatted = spanFuego;
+                break;
+
+            case "water":
+                let spanAgua = document.createElement('span');
+                let textoAgua = document.createTextNode(tipo);
+                spanAgua.setAttribute('class','water');
+                spanAgua.appendChild(textoAgua);
+                typesFormatted = spanAgua;
+                break;
+
+            case "ground":
+                let spanTierra = document.createElement('span');
+                let textoTierra = document.createTextNode(tipo);
+                spanTierra.setAttribute('class','ground');
+                spanTierra.appendChild(textoTierra);
+                typesFormatted = spanTierra;
+                break;
+
+            case "fighting":
+                let spanLucha = document.createElement('span');
+                let textoLucha = document.createTextNode(tipo);
+                spanLucha.setAttribute('class','fighting');
+                spanLucha.appendChild(textoLucha);
+                typesFormatted = spanLucha;
+                break;
+
+            case "flying":
+                let spanVolad = document.createElement('span');
+                let textoVolad = document.createTextNode(tipo);
+                spanVolad.setAttribute('class','flying');
+                spanVolad.appendChild(textoVolad);
+                typesFormatted = spanVolad;
+                break;
+            
+            case "grass":
+                let spanPlanta = document.createElement('span');
+                let textoPlanta = document.createTextNode(tipo);
+                spanPlanta.setAttribute('class','grass');
+                spanPlanta.appendChild(textoPlanta);
+                typesFormatted = spanPlanta;
+                break;
+            
+            case "poison":
+                let spanVeneno = document.createElement('span');
+                let textoVeneno = document.createTextNode(tipo);
+                spanVeneno.setAttribute('class','poison');
+                spanVeneno.appendChild(textoVeneno);
+                typesFormatted = spanVeneno;
+                break;
+
+            case "electric":
+                let spanElectrico = document.createElement('span');
+                let textoElectrico = document.createTextNode(tipo);
+                spanElectrico.setAttribute('class','electric');
+                spanElectrico.appendChild(textoElectrico);
+                typesFormatted = spanElectrico;
+                break;
+            
+            case "normal":
+                let spanNormal = document.createElement('span');
+                let textoNormal = document.createTextNode(tipo);
+                spanNormal.setAttribute('class','normal');
+                spanNormal.appendChild(textoNormal);
+                typesFormatted = spanNormal;
+                break;
+            
+        }
+        
+        
+    }
+    
+    document.getElementById('tipos').appendChild(typesFormatted);
+     //typesFormatted;
+
 }
 
 function handleLeft() {
