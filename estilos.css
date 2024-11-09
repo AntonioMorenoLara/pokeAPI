@@ -21,6 +21,11 @@ h1 {
     font-size: 3rem;
 }
 
+.cerrarIco {
+    width: 32px;
+    justify-self: center;
+}
+
 .color_blue {
     background-color: #b3effe;
 }
