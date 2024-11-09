@@ -1,6 +1,6 @@
 window.onload = function() {
 
-
+    document.getElementById('cerrar').addEventListener('click', cerrarPokedex)
     fetch('https://pokeapi.co/api/v2/pokemon/chimchar')
     .then(respuesta => respuesta.json())
     .then(result => {
@@ -212,6 +212,12 @@ function formatoTipos(tipos) {
      //typesFormatted;
 
 }
+
+function cerrarPokedex(e) {
+    
+    document.getElementById('screen').setAttribute("style", "visibility:hidden;");
+}
+
 
 function handleLeft() {
     console.log('entra en left');
