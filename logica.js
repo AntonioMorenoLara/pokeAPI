@@ -10,11 +10,16 @@ window.onload = function() {
         let type = result.types[0].type.name;
         let peso = result.weight;
         let altura = result.height;
-        
+        let backChimchar = result.sprites.back_default;
+        let frontChimchar = result.sprites.front_default;
+        console.log(backChimchar);
+        console.log(frontChimchar);
         //document.getElementById('tipos').innerHTML = type;
 
 
         formatoTipos(type);
+        document.getElementById('back').setAttribute('src',backChimchar);
+        document.getElementById('front').setAttribute('src',frontChimchar);
         document.getElementById('peso').innerHTML = parseFloat(peso) / 10 ;
         document.getElementById('altura').innerHTML = parseFloat(altura) / 10;
         /*let imgEspaldas;

@@ -15,6 +15,7 @@
     <header>
         <h1>PokéDex</h1>
     </header>
+    <!--<div><img src="images/cerrar.jpg" class="cerrarIco"></div>-->
     <main class="grid_main">
         <div></div>
         <section class="color_blue height_screen grid_screen">
@@ -25,7 +26,10 @@
                     <img src="images/arrow-left.svg" class="arrows_size" onclick="handleLeft">
                 </div>
                 <div class="grid_content">
-                    <div>Imagen pokemon</div>
+                    <div>
+                        <img id="back" class="size_image">
+                        <img id="front" class="size_image">
+                    </div>
                     <div id="tipos"></div>
                     <div>
                         <div>Altura: <span id="altura" class="normalText"></span> m</div>
@@ -37,10 +41,9 @@
                     <img src="images/arrow-right.svg" class="arrows_size" onclick="handleRight">
                 </div>
             </article>
-            <article class="font_pixel">
+            <article class="font_pixel marginTop">
                 Descripcion
             </article>
-            
         </section>
         <!--<button id="botonPokedex" class="pokdex_button">Abrir PokeDex</button>-->
     </main>

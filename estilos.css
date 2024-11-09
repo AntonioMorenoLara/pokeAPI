@@ -40,6 +40,11 @@ h1 {
 
 .grid_screen {
     display: grid;
+    grid-template-rows: 20% 40% 25%;
+}
+
+.marginTop {
+    margin-top: 5%;
 }
 
 .grid_infoPok {
@@ -49,7 +54,7 @@ h1 {
 
 .vertical_align_center {
     align-items: end;
-    align-self: center;
+    align-self: end;
 }
 
 .font_pixel {
@@ -57,14 +62,23 @@ h1 {
     font-family: "Pixelify Sans", sans-serif;
 }
 
+.grid_images {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.size_image {
+    width: 45%;
+}
+
 .title {
-    font-size: 3em;
+    font-size: 50px;
     text-align: center;
 }
 
 .grid_content {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 50% 16% 33%;
 }
 
 .arrows_size {
