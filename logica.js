@@ -1,6 +1,12 @@
 window.onload = function() {
 
+    let endpoint = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
+
+    let llamadaApi = promesa(endpoint);
+    console.log(llamadaApi);
+
     document.getElementById('cerrar').addEventListener('click', cerrarPokedex)
+
     fetch('https://pokeapi.co/api/v2/pokemon/chimchar')
     .then(respuesta => respuesta.json())
     .then(result => {
@@ -9,6 +15,7 @@ window.onload = function() {
         let name = result.forms[0].name;
         let type = result.types[0].type.name;
         let peso = result.weight;
+        
         let altura = result.height;
         let backChimchar = result.sprites.back_default;
         let frontChimchar = result.sprites.front_default;
@@ -222,6 +229,14 @@ function cerrarPokedex(e) {
 function handleLeft() {
     console.log('entra en left');
 }
+
+async function promesa (endpoint) {
+
+    let result = await fetch(endpoint);
+    let data = await result.json();
+    console.log('data', data);
+}
+
 
 function handleRight() {
     console.log('entra en right');
