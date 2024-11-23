@@ -1,135 +1,84 @@
-window.onload = function() {
+window.onload = async function() {
 
-    let endpoint = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
-
-    let llamadaApi = promesa(endpoint);
-    console.log(llamadaApi);
-
-    document.getElementById('cerrar').addEventListener('click', cerrarPokedex)
-
-    fetch('https://pokeapi.co/api/v2/pokemon/chimchar')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        console.log(result);
-        chimchar = result;
-        let name = result.forms[0].name;
-        let type = result.types[0].type.name;
-        let peso = result.weight;
-        
-        let altura = result.height;
-        let backChimchar = result.sprites.back_default;
-        let frontChimchar = result.sprites.front_default;
-        console.log(backChimchar);
-        console.log(frontChimchar);
-        //document.getElementById('tipos').innerHTML = type;
+    let urlChimchar = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
+    let urlMonferno = new URL('https://pokeapi.co/api/v2/pokemon/monferno');
+    let urlInfernape = new URL('https://pokeapi.co/api/v2/pokemon/infernape');
+    let urlStarly = new URL('https://pokeapi.co/api/v2/pokemon/starly');
+    let urlStaravia = new URL('https://pokeapi.co/api/v2/pokemon/staravia');
+    let urlStaraptor = new URL('https://pokeapi.co/api/v2/pokemon/staraptor');
+    let urlShinx = new URL('https://pokeapi.co/api/v2/pokemon/shinx');
+    let urlLuxio = new URL('https://pokeapi.co/api/v2/pokemon/luxio');
+    let urlLuxray = new URL('https://pokeapi.co/api/v2/pokemon/luxray');
+    let urlBudew = new URL('https://pokeapi.co/api/v2/pokemon/budew');
+    let urlRoselia = new URL('https://pokeapi.co/api/v2/pokemon/roselia');
+    let urlRoserade = new URL('https://pokeapi.co/api/v2/pokemon/roserade');
+    let urlWooper = new URL('https://pokeapi.co/api/v2/pokemon/roserade');
+    let urlQuagsire = new URL('https://pokeapi.co/api/v2/pokemon/quagsire');
+    let urlRiolu = new URL('https://pokeapi.co/api/v2/pokemon/riolu');
+    let urlLucario = new URL('https://pokeapi.co/api/v2/pokemon/lucario');
 
 
-        formatoTipos(type);
-        document.getElementById('back').setAttribute('src',backChimchar);
-        document.getElementById('front').setAttribute('src',frontChimchar);
-        document.getElementById('peso').innerHTML = parseFloat(peso) / 10 ;
-        document.getElementById('altura').innerHTML = parseFloat(altura) / 10;
-        /*let imgEspaldas;
-        let imgFrontal = */
+    let dataChimchar = await getData(urlChimchar);
+    let dataMonferno = await getData(urlMonferno);
+    let dataInfernape = await getData(urlInfernape);
+    let dataStarly = await getData(urlStarly);
+    let dataStaravia = await getData(urlStaravia);
+    let dataStarapator = await getData(urlStaraptor);
+    let dataShinx = await getData(urlShinx);
+    let dataLuxio = await getData(urlLuxio);
+    let dataLuxray = await getData(urlLuxray);
+    let dataBudew = await getData(urlBudew);
+    let dataRoselia = await getData(urlRoselia);
+    let dataRoserade = await getData(urlRoserade);
+    let dataWooper = await getData(urlWooper);
+    let dataQuagsire = await getData(urlQuagsire);
+    let dataRiolu = await getData(urlRiolu);
+    let dataLucario = await getData(urlLucario);
 
-        console.log(name);
-        document.getElementById('title_Pokemon').innerHTML = name;
-    })
-    //console.log('chimchar ',chimchar);
-    fetch('https://pokeapi.co/api/v2/pokemon/monferno')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
+    console.log('data ', dataChimchar);
 
-    fetch('https://pokeapi.co/api/v2/pokemon/infernape')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
+    let pokemonData = [dataChimchar, dataMonferno, dataInfernape, dataStarly, dataStaravia, 
+        dataStarapator, dataShinx, dataLuxio, dataLuxray, dataBudew, dataRoselia, dataRoserade, 
+        dataWooper, dataQuagsire, dataRiolu, dataLucario];
 
-    fetch('https://pokeapi.co/api/v2/pokemon/shinx')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/luxio')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/luxray')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/starly')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/staravia')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/staraptor')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/wooper')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/quagsire')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/riolu')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/lucario')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/budew')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-    fetch('https://pokeapi.co/api/v2/pokemon/roselia')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
-
-
-    fetch('https://pokeapi.co/api/v2/pokemon/roserade')
-    .then(respuesta => respuesta.json())
-    .then(result => {
-        //console.log(result);
-    })
+    let showDataPokemon = [];
     
+    
+    for (let pokemon of pokemonData) {
+
+
+        let data = {};
+
+        data.nombre = pokemon.forms[0].name;
+        data.imgFront = pokemon.sprites.front_default;
+        data.imgBack = pokemon.sprites.back_default;
+        data.altura = pokemon.height;
+        data.peso = pokemon.weight;
+        data.tipo = pokemon.types[0].type.name;
+        //data.descripcion = ;
+        
+        showDataPokemon.push(data);
+    }
+
+    document.getElementById('back').setAttribute('src',showDataPokemon[0].imgBack);
+    document.getElementById('front').setAttribute('src',showDataPokemon[0].imgFront);
+    document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[0].peso) / 10 ;
+    document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[0].altura) / 10;
+    document.getElementById('title_Pokemon').innerHTML = showDataPokemon[0].nombre;
+    console.log(showDataPokemon[0].tipo);
+    formatoTipos(showDataPokemon[0].tipo);
+
+
+    console.log('showDataPokemon ',showDataPokemon);
+
+
+
+    document.getElementById('cerrar').addEventListener('click', cerrarPokedex);
 }
 
 function formatoTipos(tipos) {
+
+    console.log(tipos);
 
     let tiposSeparados = tipos.split(',');
     let typesFormatted;
@@ -139,6 +88,7 @@ function formatoTipos(tipos) {
         switch (tipo) {
 
             case "fire":
+                console.log('entra aqui');
                 let spanFuego = document.createElement('span');
                 let textoFuego = document.createTextNode(tipo);
                 spanFuego.setAttribute('class','fire');
@@ -230,11 +180,12 @@ function handleLeft() {
     console.log('entra en left');
 }
 
-async function promesa (endpoint) {
+async function getData(endpoint) {
 
     let result = await fetch(endpoint);
     let data = await result.json();
-    console.log('data', data);
+    console.log('async ', data);
+    return data;
 }
 
 
