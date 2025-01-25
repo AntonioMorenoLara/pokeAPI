@@ -1,4 +1,11 @@
+let showDataPokemon = [];
+let pokemonTipos = [];
+let incrementindex = 0;
+
 window.onload = async function() {
+
+    document.getElementById('left').addEventListener('click', handleLeft);
+    document.getElementById('right').addEventListener('click', handleRight);
 
     let urlChimchar = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
     let urlMonferno = new URL('https://pokeapi.co/api/v2/pokemon/monferno');
@@ -12,7 +19,7 @@ window.onload = async function() {
     let urlBudew = new URL('https://pokeapi.co/api/v2/pokemon/budew');
     let urlRoselia = new URL('https://pokeapi.co/api/v2/pokemon/roselia');
     let urlRoserade = new URL('https://pokeapi.co/api/v2/pokemon/roserade');
-    let urlWooper = new URL('https://pokeapi.co/api/v2/pokemon/roserade');
+    let urlWooper = new URL('https://pokeapi.co/api/v2/pokemon/wooper');
     let urlQuagsire = new URL('https://pokeapi.co/api/v2/pokemon/quagsire');
     let urlRiolu = new URL('https://pokeapi.co/api/v2/pokemon/riolu');
     let urlLucario = new URL('https://pokeapi.co/api/v2/pokemon/lucario');
@@ -35,15 +42,11 @@ window.onload = async function() {
     let dataRiolu = await getData(urlRiolu);
     let dataLucario = await getData(urlLucario);
 
-    console.log('data ', dataChimchar);
 
     let pokemonData = [dataChimchar, dataMonferno, dataInfernape, dataStarly, dataStaravia, 
         dataStarapator, dataShinx, dataLuxio, dataLuxray, dataBudew, dataRoselia, dataRoserade, 
         dataWooper, dataQuagsire, dataRiolu, dataLucario];
 
-    let showDataPokemon = [];
-    
-    
     for (let pokemon of pokemonData) {
 
 
@@ -54,7 +57,7 @@ window.onload = async function() {
         data.imgBack = pokemon.sprites.back_default;
         data.altura = pokemon.height;
         data.peso = pokemon.weight;
-        data.tipo = pokemon.types[0].type.name;
+        data.tipos = pokemon.types;
         //data.descripcion = ;
         
         showDataPokemon.push(data);
@@ -64,131 +67,200 @@ window.onload = async function() {
     document.getElementById('front').setAttribute('src',showDataPokemon[0].imgFront);
     document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[0].peso) / 10 ;
     document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[0].altura) / 10;
-    document.getElementById('title_Pokemon').innerHTML = showDataPokemon[0].nombre;
-    console.log(showDataPokemon[0].tipo);
-    formatoTipos(showDataPokemon[0].tipo);
+    document.getElementById('title_Pokemon').innerHTML = showDataPokemon[0].nombre.toUpperCase();
+    formatoTipos(showDataPokemon[0].tipos, showDataPokemon[0].nombre);
 
 
-    console.log('showDataPokemon ',showDataPokemon);
-
-
+    document.getElementById('right').setAttribute('data-index','0');
+    document.getElementById('right').setAttribute('data-pokemon',showDataPokemon[0].nombre);
+    document.getElementById('left').setAttribute('class', 'visibilityHidden');
+    document.getElementById('left').setAttribute('data-index', '0');
 
     document.getElementById('cerrar').addEventListener('click', cerrarPokedex);
 }
 
-function formatoTipos(tipos) {
+function formatoTipos(tipos, pokemonName) {
 
-    console.log(tipos);
+    if (pokemonTipos) {
 
-    let tiposSeparados = tipos.split(',');
-    let typesFormatted;
+        for (let typeRemove of pokemonTipos) {
+            
+            typeRemove.remove();
+        }
+    }
 
-    for (let tipo of tiposSeparados) {
+    let typesFormatted = [];
+    
+    for (let i = 0; i < tipos.length; i++) {
 
-        switch (tipo) {
+        let type = tipos[i].type.name;
+
+        switch (type) {
 
             case "fire":
-                console.log('entra aqui');
+                let brDom = document.createElement('br');
                 let spanFuego = document.createElement('span');
-                let textoFuego = document.createTextNode(tipo);
+                let textoFuego = document.createTextNode(type);
                 spanFuego.setAttribute('class','fire');
+                //spanFuego.setAttribute('id',pokemonName);
                 spanFuego.appendChild(textoFuego);
-                typesFormatted = spanFuego;
+                spanFuego.appendChild(brDom);
+                typesFormatted.push(spanFuego);
                 break;
 
             case "water":
                 let spanAgua = document.createElement('span');
-                let textoAgua = document.createTextNode(tipo);
+                let textoAgua = document.createTextNode(type);
                 spanAgua.setAttribute('class','water');
                 spanAgua.appendChild(textoAgua);
-                typesFormatted = spanAgua;
+                typesFormatted.push(spanAgua);
                 break;
 
             case "ground":
                 let spanTierra = document.createElement('span');
-                let textoTierra = document.createTextNode(tipo);
+                let textoTierra = document.createTextNode(type);
                 spanTierra.setAttribute('class','ground');
                 spanTierra.appendChild(textoTierra);
-                typesFormatted = spanTierra;
+                typesFormatted.push(spanTierra);
                 break;
 
             case "fighting":
                 let spanLucha = document.createElement('span');
-                let textoLucha = document.createTextNode(tipo);
+                let textoLucha = document.createTextNode(type);
                 spanLucha.setAttribute('class','fighting');
                 spanLucha.appendChild(textoLucha);
-                typesFormatted = spanLucha;
+                //typesFormatted = spanLucha;
+                typesFormatted.push(spanLucha);
                 break;
 
             case "flying":
                 let spanVolad = document.createElement('span');
-                let textoVolad = document.createTextNode(tipo);
+                let textoVolad = document.createTextNode(type);
                 spanVolad.setAttribute('class','flying');
                 spanVolad.appendChild(textoVolad);
-                typesFormatted = spanVolad;
+                typesFormatted.push(spanVolad);
                 break;
             
             case "grass":
                 let spanPlanta = document.createElement('span');
-                let textoPlanta = document.createTextNode(tipo);
+                let textoPlanta = document.createTextNode(type);
                 spanPlanta.setAttribute('class','grass');
                 spanPlanta.appendChild(textoPlanta);
-                typesFormatted = spanPlanta;
+                typesFormatted.push(spanPlanta);
                 break;
             
             case "poison":
                 let spanVeneno = document.createElement('span');
-                let textoVeneno = document.createTextNode(tipo);
+                let textoVeneno = document.createTextNode(type);
                 spanVeneno.setAttribute('class','poison');
                 spanVeneno.appendChild(textoVeneno);
-                typesFormatted = spanVeneno;
+                typesFormatted.push(spanVeneno);
                 break;
 
             case "electric":
                 let spanElectrico = document.createElement('span');
-                let textoElectrico = document.createTextNode(tipo);
+                let textoElectrico = document.createTextNode(type);
                 spanElectrico.setAttribute('class','electric');
                 spanElectrico.appendChild(textoElectrico);
-                typesFormatted = spanElectrico;
+                typesFormatted.push(spanElectrico);
                 break;
             
             case "normal":
                 let spanNormal = document.createElement('span');
-                let textoNormal = document.createTextNode(tipo);
+                let textoNormal = document.createTextNode(type);
                 spanNormal.setAttribute('class','normal');
                 spanNormal.appendChild(textoNormal);
-                typesFormatted = spanNormal;
+                typesFormatted.push(spanNormal);
                 break;
-            
         }
-        
-        
+        document.getElementById('tipos').appendChild(typesFormatted[i]);
+
+        /*if (incrementindex === 15) {
+            document.getElementById('right').setAttribute('class', 'visibilityHidden');
+        }*/
     }
     
-    document.getElementById('tipos').appendChild(typesFormatted);
+    
+    pokemonTipos = typesFormatted;
+    
      //typesFormatted;
 
 }
 
-function cerrarPokedex(e) {
+function cerrarPokedex() {
     
-    document.getElementById('screen').setAttribute("style", "visibility:hidden;");
+    document.getElementById('screen').setAttribute("class", "visibilityHidden");
 }
 
 
-function handleLeft() {
-    console.log('entra en left');
+function handleLeft(e) {
+
+    let index = parseInt(e.target.dataset.index);
+    console.log('index',index);
+    let lengthIndex = showDataPokemon.length-1;
+    let decrementindex = index-1;
+    
+    
+
+    console.log('data decrement',showDataPokemon[decrementindex]);
+    
+    
+    document.getElementById('back').setAttribute('src',showDataPokemon[decrementindex].imgBack);
+    document.getElementById('front').setAttribute('src',showDataPokemon[decrementindex].imgFront);
+    document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[decrementindex].peso) / 10 ;
+    document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[decrementindex].altura) / 10;
+    document.getElementById('title_Pokemon').innerHTML = showDataPokemon[decrementindex].nombre.toUpperCase();
+        
+    let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
+    formatoTipos(showDataPokemon[decrementindex].tipos, showDataPokemon[decrementindex].nombre);
+        //showDataPokemon = dataPokemon[]
+
+    
+    
+    document.getElementById('right').setAttribute('data-index', decrementindex);
+    document.getElementById('left').setAttribute('data-index', decrementindex);
+    document.getElementById('right').setAttribute('data-pokemon', showDataPokemon[decrementindex].nombre);
+
+    if (decrementindex === 0) {
+        document.getElementById('left').setAttribute('class', 'visibilityHidden');
+    }
 }
 
 async function getData(endpoint) {
 
     let result = await fetch(endpoint);
     let data = await result.json();
-    console.log('async ', data);
     return data;
 }
 
 
-function handleRight() {
-    console.log('entra en right');
+function handleRight(e) {
+
+    document.getElementById('left').setAttribute('class','isVisible');
+    document.getElementById('left').setAttribute('class','arrows_size');
+    
+    let index = parseInt(e.target.dataset.index);
+
+    let lengthIndex = showDataPokemon.length-1;
+    incrementindex = index+1;
+    
+    
+    document.getElementById('back').setAttribute('src',showDataPokemon[incrementindex].imgBack);
+    document.getElementById('front').setAttribute('src',showDataPokemon[incrementindex].imgFront);
+    document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[incrementindex].peso) / 10 ;
+    document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[incrementindex].altura) / 10;
+    document.getElementById('title_Pokemon').innerHTML = showDataPokemon[incrementindex].nombre.toUpperCase();
+        
+    let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
+    formatoTipos(showDataPokemon[incrementindex].tipos, showDataPokemon[incrementindex].nombre);
+        //showDataPokemon = dataPokemon[]
+
+    if (incrementindex === 15) {
+        document.getElementById('right').setAttribute('class', 'visibilityHidden');
+    }
+    
+    document.getElementById('right').setAttribute('data-index', incrementindex);
+    document.getElementById('left').setAttribute('data-index', incrementindex);
+    document.getElementById('right').setAttribute('data-pokemon', showDataPokemon[incrementindex].nombre);
+
 }

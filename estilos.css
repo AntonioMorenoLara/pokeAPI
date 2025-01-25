@@ -211,3 +211,10 @@ h1 {
     color:white;
 }
 
+.visibilityHidden {
+    visibility: hidden;
+}
+
+.isVisible {
+    visibility: visible;
+}
