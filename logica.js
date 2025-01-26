@@ -7,6 +7,7 @@ window.onload = async function() {
     document.getElementById('left').addEventListener('click', handleLeft);
     document.getElementById('right').addEventListener('click', handleRight);
 
+    // Data Pokemon 
     let urlChimchar = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
     let urlMonferno = new URL('https://pokeapi.co/api/v2/pokemon/monferno');
     let urlInfernape = new URL('https://pokeapi.co/api/v2/pokemon/infernape');
@@ -23,6 +24,41 @@ window.onload = async function() {
     let urlQuagsire = new URL('https://pokeapi.co/api/v2/pokemon/quagsire');
     let urlRiolu = new URL('https://pokeapi.co/api/v2/pokemon/riolu');
     let urlLucario = new URL('https://pokeapi.co/api/v2/pokemon/lucario');
+
+    // Description Pokemon
+    let urlDescChimchar = new URL('https://pokeapi.co/api/v2/pokemon-species/390');
+    let urlDescMonferno = new URL('https://pokeapi.co/api/v2/pokemon-species/391');
+    let urlDescInfernape = new URL('https://pokeapi.co/api/v2/pokemon-species/392');
+    let urlDescStarly = new URL('https://pokeapi.co/api/v2/pokemon-species/396');
+    let urlDescStaravia = new URL('https://pokeapi.co/api/v2/pokemon-species/397');
+    let urlDescStaraptor = new URL('https://pokeapi.co/api/v2/pokemon-species/398');
+    let urlDescShinx = new URL('https://pokeapi.co/api/v2/pokemon-species/403');
+    let urlDescLuxio = new URL('https://pokeapi.co/api/v2/pokemon-species/404');
+    let urlDescLuxray = new URL('https://pokeapi.co/api/v2/pokemon-species/405');
+    let urlDescBudew = new URL('https://pokeapi.co/api/v2/pokemon-species/406');
+    let urlDescRoselia = new URL('https://pokeapi.co/api/v2/pokemon-species/315');
+    let urlDescRoserade = new URL('https://pokeapi.co/api/v2/pokemon-species/407');
+    let urlDescWooper = new URL('https://pokeapi.co/api/v2/pokemon-species/194');
+    let urlDescQuagsire = new URL('https://pokeapi.co/api/v2/pokemon-species/195');
+    let urlDescRiolu = new URL('https://pokeapi.co/api/v2/pokemon-species/447');
+    let urlDescLucario = new URL('https://pokeapi.co/api/v2/pokemon-species/448');
+
+    let descripcionChimchar = await getData(urlDescChimchar);
+    let descripcionMonferno = await getData(urlDescMonferno);
+    let descripcionInfernape = await getData(urlDescInfernape);
+    let descripcionStarly = await getData(urlDescStarly);
+    let descripcionStaravia = await getData(urlDescStaravia);
+    let descripcionStaraptor = await getData(urlDescStaraptor);
+    let descripcionShinx = await getData(urlDescShinx);
+    let descripcionLuxio = await getData(urlDescLuxio);
+    let descripcionLuxray = await getData(urlDescLuxray);
+    let descripcionBudew = await getData(urlDescBudew);
+    let descripcionRoselia = await getData(urlDescRoselia);
+    let descripcionRoserade = await getData(urlDescRoserade);
+    let descripcionWooper = await getData(urlDescWooper);
+    let descripcionQuagsire = await getData(urlDescQuagsire);
+    let descripcionRiolu = await getData(urlDescRiolu);
+    let descripcionLucario = await getData(urlDescLucario);
 
 
     let dataChimchar = await getData(urlChimchar);
@@ -42,32 +78,52 @@ window.onload = async function() {
     let dataRiolu = await getData(urlRiolu);
     let dataLucario = await getData(urlLucario);
 
+    let descData = [
+        descripcionChimchar, descripcionMonferno, descripcionInfernape, descripcionStarly,
+        descripcionStaravia, descripcionStaraptor, descripcionShinx, descripcionLuxio, descripcionLuxray, 
+        descripcionBudew, descripcionRoselia, descripcionRoserade, descripcionWooper, descripcionQuagsire,
+        descripcionRiolu, descripcionLucario
+    ];
+
+    console.log('descData', descData);
 
     let pokemonData = [dataChimchar, dataMonferno, dataInfernape, dataStarly, dataStaravia, 
         dataStarapator, dataShinx, dataLuxio, dataLuxray, dataBudew, dataRoselia, dataRoserade, 
         dataWooper, dataQuagsire, dataRiolu, dataLucario];
 
-    for (let pokemon of pokemonData) {
+    for (let i = 0; i < pokemonData.length; i++) {
 
 
         let data = {};
 
-        data.nombre = pokemon.forms[0].name;
-        data.imgFront = pokemon.sprites.front_default;
-        data.imgBack = pokemon.sprites.back_default;
-        data.altura = pokemon.height;
-        data.peso = pokemon.weight;
-        data.tipos = pokemon.types;
-        //data.descripcion = ;
+        data.nombre = pokemonData[i].forms[0].name;
+        data.imgFront = pokemonData[i].sprites.front_default;
+        data.imgBack = pokemonData[i].sprites.back_default;
+        data.altura = pokemonData[i].height;
+        data.peso = pokemonData[i].weight;
+        data.tipos = pokemonData[i].types;
+        data.descripcion = descData[i].flavor_text_entries[39].flavor_text;
+
+        //Texto no esta en castellano en la posicion 39, 
+        if (descData[i].name == 'luxio') {
+            data.descripcion = descData[i].flavor_text_entries[40].flavor_text;
+        }
+
+        if (descData[i].name == 'roselia') {
+            data.descripcion = descData[i].flavor_text_entries[20].flavor_text;
+        }
         
         showDataPokemon.push(data);
     }
+
+    console.log('descripcion ',showDataPokemon[0].descripcion);
 
     document.getElementById('back').setAttribute('src',showDataPokemon[0].imgBack);
     document.getElementById('front').setAttribute('src',showDataPokemon[0].imgFront);
     document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[0].peso) / 10 ;
     document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[0].altura) / 10;
     document.getElementById('title_Pokemon').innerHTML = showDataPokemon[0].nombre.toUpperCase();
+    document.getElementById('descripcion').innerHTML = showDataPokemon[0].descripcion;
     formatoTipos(showDataPokemon[0].tipos, showDataPokemon[0].nombre);
 
 
@@ -210,6 +266,7 @@ function handleLeft(e) {
     document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[decrementindex].peso) / 10 ;
     document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[decrementindex].altura) / 10;
     document.getElementById('title_Pokemon').innerHTML = showDataPokemon[decrementindex].nombre.toUpperCase();
+    document.getElementById('descripcion').innerHTML = showDataPokemon[decrementindex].descripcion;
         
     let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
     formatoTipos(showDataPokemon[decrementindex].tipos, showDataPokemon[decrementindex].nombre);
@@ -250,6 +307,7 @@ function handleRight(e) {
     document.getElementById('peso').innerHTML = parseFloat(showDataPokemon[incrementindex].peso) / 10 ;
     document.getElementById('altura').innerHTML = parseFloat(showDataPokemon[incrementindex].altura) / 10;
     document.getElementById('title_Pokemon').innerHTML = showDataPokemon[incrementindex].nombre.toUpperCase();
+    document.getElementById('descripcion').innerHTML = showDataPokemon[incrementindex].descripcion;
         
     let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
     formatoTipos(showDataPokemon[incrementindex].tipos, showDataPokemon[incrementindex].nombre);
@@ -262,5 +320,8 @@ function handleRight(e) {
     document.getElementById('right').setAttribute('data-index', incrementindex);
     document.getElementById('left').setAttribute('data-index', incrementindex);
     document.getElementById('right').setAttribute('data-pokemon', showDataPokemon[incrementindex].nombre);
+}
+
+function getDescription(urlEndpoint) {
 
 }
