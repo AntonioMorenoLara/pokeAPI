@@ -299,8 +299,7 @@ async function getData(endpoint) {
 
 function handleRight(e) {
 
-    document.getElementById('left').setAttribute('class','isVisible');
-    document.getElementById('left').setAttribute('class','arrows_size');
+    document.getElementById('left').setAttribute('class','isVisible arrows_size flechaI');
     
     let index = parseInt(e.target.dataset.index);
 

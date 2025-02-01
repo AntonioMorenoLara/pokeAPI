@@ -1,3 +1,31 @@
+@keyframes flechaR {
+    from {
+        position: relative;
+        left: 0%;
+        animation-timing-function: linear;
+    }
+
+    to {
+        animation-timing-function: linear;
+        position: relative;
+        left: 20%;
+    }
+}
+
+@keyframes flechaL {
+    from {
+        position: relative;
+        right: 0%;
+        animation-timing-function: linear;
+    }
+
+    to {
+        position: relative;
+        right: 20%;
+        animation-timing-function: linear;
+    }
+}
+
 body {
     background-color: black;
     background-image: url('images/background3.webp');
@@ -110,8 +138,25 @@ h1 {
 }
 
 .right_arrow {
-    justify-self: end;
+    justify-self: center;
     align-items: center;
+}
+
+.right_arrow:hover {
+    justify-self: center;
+    align-items: center;
+    animation-name: flechaR;
+}
+
+.left_arrow {
+    justify-self: center;
+}
+
+
+.left_arrow:hover {
+    justify-self: center;
+    align-items: center;
+    /*animation-name: flechaL;*/
 }
 
 .pokdex_button {
@@ -221,4 +266,19 @@ h1 {
 
 .lineHeight {
     line-height: 2.5;
+}
+
+
+
+.flechaI:hover {
+
+    animation-name: flechaL;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s
+}
+
+.flechaD:hover {
+    animation-name: flechaR;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s
 }
