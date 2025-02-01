@@ -218,3 +218,7 @@ h1 {
 .isVisible {
     visibility: visible;
 }
+
+.lineHeight {
+    line-height: 2.5;
+}

@@ -157,7 +157,7 @@ function formatoTipos(tipos, pokemonName) {
                 let brDom = document.createElement('br');
                 let spanFuego = document.createElement('span');
                 let textoFuego = document.createTextNode(type);
-                spanFuego.setAttribute('class','fire');
+                spanFuego.setAttribute('class','fire lineHeight');
                 //spanFuego.setAttribute('id',pokemonName);
                 spanFuego.appendChild(textoFuego);
                 spanFuego.appendChild(brDom);
@@ -165,10 +165,12 @@ function formatoTipos(tipos, pokemonName) {
                 break;
 
             case "water":
+                let brAgua = document.createElement('br');
                 let spanAgua = document.createElement('span');
                 let textoAgua = document.createTextNode(type);
-                spanAgua.setAttribute('class','water');
+                spanAgua.setAttribute('class','water lineHeight');
                 spanAgua.appendChild(textoAgua);
+                spanAgua.appendChild(brAgua);
                 typesFormatted.push(spanAgua);
                 break;
 
@@ -198,10 +200,12 @@ function formatoTipos(tipos, pokemonName) {
                 break;
             
             case "grass":
+                let brPlanta = document.createElement('br');
                 let spanPlanta = document.createElement('span');
                 let textoPlanta = document.createTextNode(type);
-                spanPlanta.setAttribute('class','grass');
+                spanPlanta.setAttribute('class','grass lineHeight');
                 spanPlanta.appendChild(textoPlanta);
+                spanPlanta.appendChild(brPlanta);
                 typesFormatted.push(spanPlanta);
                 break;
             
@@ -222,10 +226,12 @@ function formatoTipos(tipos, pokemonName) {
                 break;
             
             case "normal":
+                let brNormal = document.createElement('br');
                 let spanNormal = document.createElement('span');
                 let textoNormal = document.createTextNode(type);
-                spanNormal.setAttribute('class','normal');
+                spanNormal.setAttribute('class','normal lineHeight');
                 spanNormal.appendChild(textoNormal);
+                spanNormal.appendChild(brNormal);
                 typesFormatted.push(spanNormal);
                 break;
         }
