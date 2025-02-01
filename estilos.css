@@ -113,7 +113,7 @@ h1 {
 .cerrarBoton:hover {
     background-color: black;
     animation-name: cerrar;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-iteration-count: infinite;
 }
 
