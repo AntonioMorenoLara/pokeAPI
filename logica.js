@@ -1,6 +1,7 @@
 let showDataPokemon = [];
 let pokemonTipos = [];
 let incrementindex = 0;
+let keyDataPokemon = 0;
 
 window.onload = async function() {
 
@@ -261,6 +262,7 @@ function cerrarPokedex() {
         console.log(abrirPokedex);
         abrirPokedex.innerHTML = 'Abrir Pokedex';
         document.getElementById('abrirBoton').appendChild(abrirPokedex);
+        document.getElementById('left').setAttribute('class','visibilityHidden');
     
 
     //console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
@@ -274,8 +276,13 @@ function cerrarPokedex() {
     
 }
 
-function handleAbrirPokedex () {
+function handleAbrirPokedex (e) {
 
+    console.log('keyDataPokemon ',keyDataPokemon);
+
+    if (keyDataPokemon != 0) {
+        document.getElementById('left').setAttribute('class','arrows_size flechaI');
+    }
 
     // Si el boton de cerrar es visible, entonces se oculta el de abrir
     if (document.getElementById('screen').getAttribute && 
@@ -283,12 +290,12 @@ function handleAbrirPokedex () {
 
         document.getElementById('abrirBoton').setAttribute('class', 'visibilityHidden');
     }
-
     
     document.getElementById('screen').setAttribute("class", "isVisible color_blue height_screen grid_screen");
     //document.getElementById('abrirBoton').setAttribute("class", "visibilityHidden");
     document.getElementById('abrirPokedex').remove();
 
+    console.log();
 }
 
 
@@ -298,11 +305,8 @@ function handleLeft(e) {
     console.log('index',index);
     let lengthIndex = showDataPokemon.length-1;
     let decrementindex = index-1;
-    
-    
-
+    keyDataPokemon = decrementindex;
     console.log('data decrement',showDataPokemon[decrementindex]);
-    
     
     document.getElementById('back').setAttribute('src',showDataPokemon[decrementindex].imgBack);
     document.getElementById('front').setAttribute('src',showDataPokemon[decrementindex].imgFront);
@@ -315,8 +319,6 @@ function handleLeft(e) {
     formatoTipos(showDataPokemon[decrementindex].tipos, showDataPokemon[decrementindex].nombre);
         //showDataPokemon = dataPokemon[]
 
-    
-    
     document.getElementById('right').setAttribute('data-index', decrementindex);
     document.getElementById('left').setAttribute('data-index', decrementindex);
     document.getElementById('right').setAttribute('data-pokemon', showDataPokemon[decrementindex].nombre);
@@ -342,7 +344,7 @@ function handleRight(e) {
 
     let lengthIndex = showDataPokemon.length-1;
     incrementindex = index+1;
-    
+    keyDataPokemon = incrementindex;
     
     document.getElementById('back').setAttribute('src',showDataPokemon[incrementindex].imgBack);
     document.getElementById('front').setAttribute('src',showDataPokemon[incrementindex].imgFront);
