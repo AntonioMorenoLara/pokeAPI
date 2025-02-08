@@ -110,6 +110,17 @@ h1 {
     cursor: pointer;
 }
 
+.abrirBoton {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-family: "Comic Neue", cursive;
+    cursor: pointer;
+    position: absolute;
+    right: 50%;
+}
+
 .cerrarBoton:hover {
     background-color: black;
     animation-name: cerrar;
@@ -165,11 +176,12 @@ h1 {
 .right_arrow:hover {
     justify-self: center;
     align-items: center;
-    animation-name: flechaR;
+    /*animation-name: flechaR;*/
 }
 
 .left_arrow {
     justify-self: center;
+    align-items: center;
 }
 
 

@@ -252,6 +252,29 @@ function formatoTipos(tipos, pokemonName) {
 function cerrarPokedex() {
     
     document.getElementById('screen').setAttribute("class", "visibilityHidden");
+
+    if (!document.getElementById('abrirPokedex')) {
+        let abrirPokedex = document.createElement('button');
+        abrirPokedex.setAttribute('id','abrirPokedex');
+        abrirPokedex.setAttribute('class','abrirBoton');
+        abrirPokedex.addEventListener('click', handleAbrirPokedex);
+        abrirPokedex.innerHTML = 'Abrir Pokedex';
+        document.getElementById('abrirPokedex').appendChild(abrirPokedex);
+    }
+
+    console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
+    if (document.getElementById('abrirPokedex').getAttribute('class') === 'visibilityHidden') {
+        console.log('entra aqui');
+        document.getElementById('abrirPokedex').setAttribute('class', 'abrirBoton');
+    }
+
+    console.log(document.getElementById('displayClose'));
+    
+}
+
+function handleAbrirPokedex () {
+    document.getElementById('screen').setAttribute("class", "isVisible color_blue height_screen grid_screen");
+    document.getElementById('abrirPokedex').setAttribute("class", "visibilityHidden");
 }
 
 
