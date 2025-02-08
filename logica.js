@@ -253,28 +253,42 @@ function cerrarPokedex() {
     
     document.getElementById('screen').setAttribute("class", "visibilityHidden");
 
-    if (!document.getElementById('abrirPokedex')) {
+    
         let abrirPokedex = document.createElement('button');
         abrirPokedex.setAttribute('id','abrirPokedex');
-        abrirPokedex.setAttribute('class','abrirBoton');
+        abrirPokedex.setAttribute('class','abrirPokedex');
         abrirPokedex.addEventListener('click', handleAbrirPokedex);
+        console.log(abrirPokedex);
         abrirPokedex.innerHTML = 'Abrir Pokedex';
-        document.getElementById('abrirPokedex').appendChild(abrirPokedex);
-    }
+        document.getElementById('abrirBoton').appendChild(abrirPokedex);
+    
 
-    console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
-    if (document.getElementById('abrirPokedex').getAttribute('class') === 'visibilityHidden') {
+    //console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
+    /*if (document.getElementById('abrirPokedex') && document.getElementById('abrirPokedex').getAttribute('class') === 'visibilityHidden') {
         console.log('entra aqui');
         document.getElementById('abrirPokedex').setAttribute('class', 'abrirBoton');
-    }
+    }*/
 
     console.log(document.getElementById('displayClose'));
+    console.log(document.getElementById('abrirPokedex'));
     
 }
 
 function handleAbrirPokedex () {
+
+
+    // Si el boton de cerrar es visible, entonces se oculta el de abrir
+    if (document.getElementById('screen').getAttribute && 
+        document.getElementById('screen').getAttribute('class').includes('isVisble')) {
+
+        document.getElementById('abrirBoton').setAttribute('class', 'visibilityHidden');
+    }
+
+    
     document.getElementById('screen').setAttribute("class", "isVisible color_blue height_screen grid_screen");
-    document.getElementById('abrirPokedex').setAttribute("class", "visibilityHidden");
+    //document.getElementById('abrirBoton').setAttribute("class", "visibilityHidden");
+    document.getElementById('abrirPokedex').remove();
+
 }
 
 

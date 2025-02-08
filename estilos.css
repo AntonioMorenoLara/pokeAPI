@@ -43,6 +43,17 @@
     }
 }
 
+@keyframes botonAbrir {
+
+    from {
+        background-color: black;
+    }
+
+    to {
+        background-color: white;
+    }
+}
+
 body {
     background-color: black;
     background-image: url('images/background3.webp');
@@ -110,7 +121,11 @@ h1 {
     cursor: pointer;
 }
 
-.abrirBoton {
+
+
+.abrirPokedex {
+    display: flex;
+    justify-content:flex-start;
     padding: 20px;
     border-radius: 20px;
     background-color: white;
@@ -118,7 +133,13 @@ h1 {
     font-family: "Comic Neue", cursive;
     cursor: pointer;
     position: absolute;
-    right: 50%;
+    right: 60%;
+}
+
+.abrirPokedex:hover {
+    animation-name: botonAbrir;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
 }
 
 .cerrarBoton:hover {
