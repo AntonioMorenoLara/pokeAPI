@@ -104,8 +104,8 @@ h1 {
     grid-template-rows: 20% 40% 25%;
 }
 
-.marginTop {
-    margin-top: 5%;
+.marginDesc {
+    margin: 5% 20% 0;
 }
 
 .displayClose {
