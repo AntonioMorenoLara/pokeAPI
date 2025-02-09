@@ -155,13 +155,13 @@ function formatoTipos(tipos, pokemonName) {
         switch (type) {
 
             case "fire":
-                let brDom = document.createElement('br');
+                let brFuego = document.createElement('br');
                 let spanFuego = document.createElement('span');
                 let textoFuego = document.createTextNode(type);
                 spanFuego.setAttribute('class','fire lineHeight');
                 //spanFuego.setAttribute('id',pokemonName);
                 spanFuego.appendChild(textoFuego);
-                spanFuego.appendChild(brDom);
+                spanFuego.appendChild(brFuego);
                 typesFormatted.push(spanFuego);
                 break;
 
@@ -184,10 +184,18 @@ function formatoTipos(tipos, pokemonName) {
                 break;
 
             case "fighting":
+                //let brLucha = document.createElement('br');
                 let spanLucha = document.createElement('span');
                 let textoLucha = document.createTextNode(type);
-                spanLucha.setAttribute('class','fighting');
+                if (i === 0) {
+                    spanLucha.setAttribute('class','fighting lineHeight');
+                }
+                else {
+                    spanLucha.setAttribute('class','fighting');
+                }
+                
                 spanLucha.appendChild(textoLucha);
+                //spanLucha.appendChild(brLucha);
                 //typesFormatted = spanLucha;
                 typesFormatted.push(spanLucha);
                 break;
@@ -221,7 +229,7 @@ function formatoTipos(tipos, pokemonName) {
             case "electric":
                 let spanElectrico = document.createElement('span');
                 let textoElectrico = document.createTextNode(type);
-                spanElectrico.setAttribute('class','electric');
+                spanElectrico.setAttribute('class','electric lineHeight');
                 spanElectrico.appendChild(textoElectrico);
                 typesFormatted.push(spanElectrico);
                 break;
