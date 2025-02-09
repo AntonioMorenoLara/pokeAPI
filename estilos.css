@@ -69,12 +69,17 @@ body {
 
 /*Letra más curro*/
 h1 {
-    font-family: "Comic Neue", cursive;
-    font-weight: 700;
-    font-style: normal;
+    font-family: "Fugaz One", serif;
+    font-weight:bolder;
     color: gold;
+    /*background: linear-gradient(gold, rgb(83, 70, 0));*/
+    -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgb(0, 81, 255);
     text-align:center;
     font-size: 3rem;
+    position: relative;
+    right: 13%;
+    /*transform: scale(1.5, 1.5);*/
 }
 
 .cerrarIco {
