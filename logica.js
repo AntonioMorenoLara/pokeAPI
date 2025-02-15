@@ -247,7 +247,7 @@ function formatoTipos(tipos, pokemonName) {
                 let brAcero = document.createElement('br');
                 let spanAcero = document.createElement('span');
                 let textoAcero = document.createTextNode(type);
-                spanAcero.setAttribute('class','normal lineHeight');
+                spanAcero.setAttribute('class','normal');
                 spanAcero.appendChild(textoAcero);
                 spanAcero.appendChild(brAcero);
                 typesFormatted.push(spanAcero);
