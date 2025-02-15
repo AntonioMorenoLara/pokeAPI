@@ -184,7 +184,7 @@ function formatoTipos(tipos, pokemonName) {
                 break;
 
             case "fighting":
-                //let brLucha = document.createElement('br');
+                let brLucha = document.createElement('br');
                 let spanLucha = document.createElement('span');
                 let textoLucha = document.createTextNode(type);
                 if (i === 0) {
@@ -195,7 +195,7 @@ function formatoTipos(tipos, pokemonName) {
                 }
                 
                 spanLucha.appendChild(textoLucha);
-                //spanLucha.appendChild(brLucha);
+                spanLucha.appendChild(brLucha);
                 //typesFormatted = spanLucha;
                 typesFormatted.push(spanLucha);
                 break;
@@ -242,6 +242,15 @@ function formatoTipos(tipos, pokemonName) {
                 spanNormal.appendChild(textoNormal);
                 spanNormal.appendChild(brNormal);
                 typesFormatted.push(spanNormal);
+                break;
+            case "steel":
+                let brAcero = document.createElement('br');
+                let spanAcero = document.createElement('span');
+                let textoAcero = document.createTextNode(type);
+                spanAcero.setAttribute('class','normal lineHeight');
+                spanAcero.appendChild(textoAcero);
+                spanAcero.appendChild(brAcero);
+                typesFormatted.push(spanAcero);
                 break;
         }
         document.getElementById('tipos').appendChild(typesFormatted[i]);
