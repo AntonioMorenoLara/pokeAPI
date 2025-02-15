@@ -8,7 +8,6 @@ window.onload = async function() {
     document.getElementById('left').addEventListener('click', handleLeft);
     document.getElementById('right').addEventListener('click', handleRight);
 
-    // Data Pokemon 
     let urlChimchar = new URL('https://pokeapi.co/api/v2/pokemon/chimchar');
     let urlMonferno = new URL('https://pokeapi.co/api/v2/pokemon/monferno');
     let urlInfernape = new URL('https://pokeapi.co/api/v2/pokemon/infernape');
@@ -26,7 +25,6 @@ window.onload = async function() {
     let urlRiolu = new URL('https://pokeapi.co/api/v2/pokemon/riolu');
     let urlLucario = new URL('https://pokeapi.co/api/v2/pokemon/lucario');
 
-    // Description Pokemon
     let urlDescChimchar = new URL('https://pokeapi.co/api/v2/pokemon-species/390');
     let urlDescMonferno = new URL('https://pokeapi.co/api/v2/pokemon-species/391');
     let urlDescInfernape = new URL('https://pokeapi.co/api/v2/pokemon-species/392');
@@ -86,7 +84,6 @@ window.onload = async function() {
         descripcionRiolu, descripcionLucario
     ];
 
-    console.log('descData', descData);
 
     let pokemonData = [dataChimchar, dataMonferno, dataInfernape, dataStarly, dataStaravia, 
         dataStarapator, dataShinx, dataLuxio, dataLuxray, dataBudew, dataRoselia, dataRoserade, 
@@ -105,7 +102,6 @@ window.onload = async function() {
         data.tipos = pokemonData[i].types;
         data.descripcion = descData[i].flavor_text_entries[39].flavor_text;
 
-        //Texto no esta en castellano en la posicion 39, 
         if (descData[i].name == 'luxio') {
             data.descripcion = descData[i].flavor_text_entries[40].flavor_text;
         }
@@ -116,8 +112,6 @@ window.onload = async function() {
         
         showDataPokemon.push(data);
     }
-
-    console.log('descripcion ',showDataPokemon[0].descripcion);
 
     document.getElementById('back').setAttribute('src',showDataPokemon[0].imgBack);
     document.getElementById('front').setAttribute('src',showDataPokemon[0].imgFront);
@@ -159,7 +153,6 @@ function formatoTipos(tipos, pokemonName) {
                 let spanFuego = document.createElement('span');
                 let textoFuego = document.createTextNode(type);
                 spanFuego.setAttribute('class','fire lineHeight');
-                //spanFuego.setAttribute('id',pokemonName);
                 spanFuego.appendChild(textoFuego);
                 spanFuego.appendChild(brFuego);
                 typesFormatted.push(spanFuego);
@@ -196,7 +189,6 @@ function formatoTipos(tipos, pokemonName) {
                 
                 spanLucha.appendChild(textoLucha);
                 spanLucha.appendChild(brLucha);
-                //typesFormatted = spanLucha;
                 typesFormatted.push(spanLucha);
                 break;
 
@@ -254,16 +246,10 @@ function formatoTipos(tipos, pokemonName) {
                 break;
         }
         document.getElementById('tipos').appendChild(typesFormatted[i]);
-
-        /*if (incrementindex === 15) {
-            document.getElementById('right').setAttribute('class', 'visibilityHidden');
-        }*/
     }
     
     
     pokemonTipos = typesFormatted;
-    
-     //typesFormatted;
 
 }
 
@@ -272,31 +258,19 @@ function cerrarPokedex() {
     document.getElementById('screen').setAttribute("class", "visibilityHidden");
 
     
-        let abrirPokedex = document.createElement('button');
-        abrirPokedex.setAttribute('id','abrirPokedex');
-        abrirPokedex.setAttribute('class','abrirPokedex');
-        abrirPokedex.addEventListener('click', handleAbrirPokedex);
-        console.log(abrirPokedex);
-        abrirPokedex.innerHTML = 'Abrir Pokedex';
-        document.getElementById('abrirBoton').appendChild(abrirPokedex);
-        document.getElementById('left').setAttribute('class','visibilityHidden');
-        document.getElementById('right').setAttribute('class','visibilityHidden');
+    let abrirPokedex = document.createElement('button');
+    abrirPokedex.setAttribute('id','abrirPokedex');
+    abrirPokedex.setAttribute('class','abrirPokedex');
+    abrirPokedex.addEventListener('click', handleAbrirPokedex);
+    abrirPokedex.innerHTML = 'Abrir Pokedex';
+    document.getElementById('abrirBoton').appendChild(abrirPokedex);
+    document.getElementById('left').setAttribute('class','visibilityHidden');
+    document.getElementById('right').setAttribute('class','visibilityHidden');
     
-
-    //console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
-    /*if (document.getElementById('abrirPokedex') && document.getElementById('abrirPokedex').getAttribute('class') === 'visibilityHidden') {
-        console.log('entra aqui');
-        document.getElementById('abrirPokedex').setAttribute('class', 'abrirBoton');
-    }*/
-
-    console.log(document.getElementById('displayClose'));
-    console.log(document.getElementById('abrirPokedex'));
     
 }
 
 function handleAbrirPokedex (e) {
-
-    console.log('keyDataPokemon ',keyDataPokemon);
 
     if (keyDataPokemon != 0) {
         document.getElementById('left').setAttribute('class','arrows_size flechaI');
@@ -306,7 +280,6 @@ function handleAbrirPokedex (e) {
         document.getElementById('right').setAttribute('class','arrows_size flechaD');
     }
 
-    // Si el boton de cerrar es visible, entonces se oculta el de abrir
     if (document.getElementById('screen').getAttribute && 
         document.getElementById('screen').getAttribute('class').includes('isVisble')) {
 
@@ -314,21 +287,15 @@ function handleAbrirPokedex (e) {
     }
     
     document.getElementById('screen').setAttribute("class", "isVisible color_blue height_screen grid_screen");
-    //document.getElementById('abrirBoton').setAttribute("class", "visibilityHidden");
     document.getElementById('abrirPokedex').remove();
-
-    console.log();
 }
 
 
 function handleLeft(e) {
 
     let index = parseInt(e.target.dataset.index);
-    console.log('index',index);
-    let lengthIndex = showDataPokemon.length-1;
     let decrementindex = index-1;
     keyDataPokemon = decrementindex;
-    console.log('data decrement',showDataPokemon[decrementindex]);
     
     document.getElementById('back').setAttribute('src',showDataPokemon[decrementindex].imgBack);
     document.getElementById('front').setAttribute('src',showDataPokemon[decrementindex].imgFront);
@@ -337,10 +304,7 @@ function handleLeft(e) {
     document.getElementById('title_Pokemon').innerHTML = showDataPokemon[decrementindex].nombre.toUpperCase();
     document.getElementById('descripcion').innerHTML = showDataPokemon[decrementindex].descripcion;
         
-    let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
     formatoTipos(showDataPokemon[decrementindex].tipos, showDataPokemon[decrementindex].nombre);
-        //showDataPokemon = dataPokemon[]
-    console.log('decrementindex ', decrementindex);
 
     document.getElementById('right').setAttribute('data-index', decrementindex);
     document.getElementById('left').setAttribute('data-index', decrementindex);
@@ -369,7 +333,6 @@ function handleRight(e) {
     
     let index = parseInt(e.target.dataset.index);
 
-    let lengthIndex = showDataPokemon.length-1;
     incrementindex = index+1;
     keyDataPokemon = incrementindex;
     
@@ -380,9 +343,7 @@ function handleRight(e) {
     document.getElementById('title_Pokemon').innerHTML = showDataPokemon[incrementindex].nombre.toUpperCase();
     document.getElementById('descripcion').innerHTML = showDataPokemon[incrementindex].descripcion;
         
-    let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
     formatoTipos(showDataPokemon[incrementindex].tipos, showDataPokemon[incrementindex].nombre);
-        //showDataPokemon = dataPokemon[]
 
     if (incrementindex === 15) {
         document.getElementById('right').setAttribute('class', 'visibilityHidden');
@@ -391,8 +352,4 @@ function handleRight(e) {
     document.getElementById('right').setAttribute('data-index', incrementindex);
     document.getElementById('left').setAttribute('data-index', incrementindex);
     document.getElementById('right').setAttribute('data-pokemon', showDataPokemon[incrementindex].nombre);
-}
-
-function getDescription(urlEndpoint) {
-
 }
