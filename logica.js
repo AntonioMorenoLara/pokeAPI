@@ -280,6 +280,7 @@ function cerrarPokedex() {
         abrirPokedex.innerHTML = 'Abrir Pokedex';
         document.getElementById('abrirBoton').appendChild(abrirPokedex);
         document.getElementById('left').setAttribute('class','visibilityHidden');
+        document.getElementById('right').setAttribute('class','visibilityHidden');
     
 
     //console.log('class ', document.getElementById('abrirPokedex').getAttribute('class'));
@@ -299,6 +300,10 @@ function handleAbrirPokedex (e) {
 
     if (keyDataPokemon != 0) {
         document.getElementById('left').setAttribute('class','arrows_size flechaI');
+    }
+
+    if (keyDataPokemon != 15) {
+        document.getElementById('right').setAttribute('class','arrows_size flechaD');
     }
 
     // Si el boton de cerrar es visible, entonces se oculta el de abrir
@@ -335,6 +340,7 @@ function handleLeft(e) {
     let title_Pokemon = document.getElementById('title_Pokemon').innerHTML;
     formatoTipos(showDataPokemon[decrementindex].tipos, showDataPokemon[decrementindex].nombre);
         //showDataPokemon = dataPokemon[]
+    console.log('decrementindex ', decrementindex);
 
     document.getElementById('right').setAttribute('data-index', decrementindex);
     document.getElementById('left').setAttribute('data-index', decrementindex);
@@ -343,6 +349,10 @@ function handleLeft(e) {
     if (decrementindex === 0) {
         document.getElementById('left').setAttribute('class', 'visibilityHidden');
     }
+
+    if (decrementindex === 14) {
+        document.getElementById('right').setAttribute('class', 'isVisible arrows_size flechaD');
+    } 
 }
 
 async function getData(endpoint) {
